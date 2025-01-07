@@ -7,7 +7,7 @@ import Logo from '../../component/logo';
 import Footer from '../Footer/Footer';
 
 function JoinQuipu() {
-  const isRecruiting = false; // 모집 기간 여부
+  const isRecruiting = true; //모집 기간 여부
 
   const location = useLocation();
   const { selectedPage } = location.state || {};
@@ -16,9 +16,9 @@ function JoinQuipu() {
   const [hasPaidFee, setHasPaidFee] = useState(false);
 
   const [name, setName] = useState('');
-  const [student_id, setStudent_id] = useState('');
+  const [student_id, setStudent_id] = useState();
   const [major, setMajor] = useState('');
-  const [phone_number, setPhone_number] = useState('');
+  const [phone_number, setPhone_number] = useState();
   const [department, setDepartment] = useState('');
   const [motivation, setMotivation] = useState('');
   const [project_description, setProject_description] = useState('');
@@ -30,7 +30,6 @@ function JoinQuipu() {
   const [rows, setRows] = useState(8);
 
   const [pdf, setPDF] = useState(null);
-  const [loading, setLoading] = useState(false);
 
   const copyToClipboard = (text) => {
     navigator.clipboard.writeText(text);
@@ -69,20 +68,8 @@ function JoinQuipu() {
   };
 
   const handleUploadPdf = (e) => {
-    const file = e.target.files[0];
-
-    // 파일 크기 제한 (예: 5MB)
-    const maxSizeInMB = 5;
-    const maxSizeInBytes = maxSizeInMB * 1024 * 1024;
-
-    if (file.size > maxSizeInBytes) {
-      alert(`파일 크기가 너무 큽니다. ${maxSizeInMB}MB 이하의 파일만 업로드할 수 있습니다.`);
-      // 입력 필드를 초기화하여 파일을 지움
-      e.target.value = null;
-      return;
-    }
-
-    setPDF(file);
+    console.log(e.target.files[0]);
+    setPDF(e.target.files[0]);
   };
 
   useEffect(() => {
@@ -114,67 +101,61 @@ function JoinQuipu() {
   }, []);
 
   const handleSubmit = async () => {
-    setLoading(true);
     let res;
-    try {
-      // 일반 부원 폼 전송
-      if (selectedPage === 'general') {
-        const formData = {
-          name: name,
-          student_id: student_id,
-          major: major,
-          phone_number: phone_number,
-          motivation: motivation,
-        };
+    // 일반 부원 폼 전송
+    if (selectedPage === 'general') {
+      const formData = {
+        name: name,
+        student_id: student_id,
+        major: major,
+        phone_number: phone_number,
+        motivation: motivation,
+      };
 
-        res = await sendGeneral(formData);
-      }
+      console.log(formData);
 
-      // 개발 부원 폼 전송
-      else if (selectedPage === 'development') {
-        const formData = {
-          name: name,
-          student_id: student_id,
-          major: major,
-          phone_number: phone_number,
-          department: department,
-          motivation: motivation,
-          project_description: project_description,
-          portfolio_pdf: pdf,
-          github_profile: github_profile,
-          github_email: github_email,
-          slack_email: slack_email,
-          willing_general_member: willing_general_member,
-        };
-
-        res = await sendDevelopment(formData);
-      }
-
-      if (res.status === 201) {
-        setModalImg('welcome');
-        setModalMessage('Welcome to Quipu!');
-        setModalSubMessage('신청되었습니다.');
-      } else if (res.status === 400) {
-        setModalImg('sad');
-        setModalMessage(`${res.data}`);
-        setModalSubMessage('다시 확인해 주세요.');
-      } else if (res.status === 409) {
-        setModalImg('sad');
-        setModalMessage('이미 제출하셨습니다.');
-        setModalSubMessage('다른 응답을 원하시면 퀴푸에 문의해주세요.');
-      } else {
-        setModalImg('sad');
-        setModalMessage('서버 오류입니다.');
-        setModalSubMessage('다시 시도해보신 후 퀴푸에 문의해주세요.');
-      }
-    } catch (error) {
-      setModalImg('sad');
-      setModalMessage('오류가 발생했습니다.');
-      setModalSubMessage('다시 시도해 주세요.');
-    } finally {
-      setLoading(false); // 로딩 종료
-      setShowPopup(true);
+      res = await sendGeneral(formData);
     }
+
+    //개발 부원 폼 전송
+    else if (selectedPage === 'development') {
+      const formData = {
+        name: name,
+        student_id: student_id,
+        major: major,
+        phone_number: phone_number,
+        department: department,
+        motivation: motivation,
+        project_description: project_description,
+        portfolio_pdf: pdf,
+        github_profile: github_profile,
+        github_email: github_email,
+        slack_email: slack_email,
+        willing_general_member: willing_general_member,
+      };
+      console.log(formData);
+
+      res = await sendDevelopment(formData);
+    }
+
+    if (res.status === 201) {
+      setModalImg('welcome');
+      setModalMessage('Welcome to Quipu!');
+      setModalSubMessage('신청되었습니다.');
+    } else if (res.status === 400) {
+      setModalImg('sad');
+      setModalMessage(`${res.data}`);
+      setModalSubMessage('다시 확인해 주세요.');
+    } else if (res.status === 409) {
+      setModalImg('sad');
+      setModalMessage('이미 제출하셨습니다.');
+      setModalSubMessage('다른 응답을 원하시면 퀴푸에 문의해주세요.');
+    } else {
+      setModalImg('sad');
+      setModalMessage('서버 오류입니다.');
+      setModalSubMessage('다시 시도해보신 후 퀴푸에 문의해주세요.');
+    }
+    setShowPopup(true);
   };
 
   useEffect(() => {
@@ -187,11 +168,6 @@ function JoinQuipu() {
 
   return (
     <div className="joinquipu-container">
-      {loading && (
-        <div className="loading-overlay">
-          <img src={`${process.env.PUBLIC_URL}/JoinQuipu-img/loading.gif`} alt="Loading..." />
-        </div>
-      )}
       <NavLink to="/" smooth={true} duration={100}>
         <div className="joinquipu-logo">
           <Logo />
@@ -249,7 +225,7 @@ function JoinQuipu() {
                 </p>
                 <br />
                 <p>
-                  • 회비 : <span>10,000원</span>
+                  • 회비 : <span>20,000원</span>
                 </p>
                 <p
                   onClick={() => {
@@ -386,7 +362,7 @@ function JoinQuipu() {
               <div className="join-notice__icon--body">
                 <p>환영합니다!🎉</p>
                 <p>저희 퀴푸 개발팀에 관심을 가져주셔서 감사합니다.</p>
-                {/* <p>대면 킥오프는 9월 13일로 예정되어 있습니다.</p> */}
+                <p>대면 킥오프는 9월 13일로 예정되어 있습니다.</p>
                 <br />
                 <h1>
                   {'<'} 작성방법 {'>'}
@@ -405,7 +381,7 @@ function JoinQuipu() {
                 </h1>
                 <p>제출해주신 지원서는 신중히 검토한 후, </p>
                 <p>
-                  합격 여부를 <span>1월 3일에 문자 메세지로</span> 안내해 드릴 예정입니다.
+                  합격 여부를 <span>9월 7일에 문자 메세지로</span> 안내해 드릴 예정입니다.
                 </p>
                 <p>{'('}이는 지원자분들의 역량을 평가하기 위함이 아니라, </p>
                 <p>
@@ -545,15 +521,6 @@ function JoinQuipu() {
                     PDF로 제출해주세요.
                   </div>
                 </div>
-                <div
-                  style={{
-                    color: '#1c0093',
-                    fontSize: '0.85rem',
-                    marginTop: '5px',
-                  }}
-                >
-                  * 최대 파일 크기는 5MB입니다.
-                </div>
               </div>
 
               <div className="form-field">
@@ -674,13 +641,13 @@ function JoinQuipu() {
               emoji="🤔"
             />
             <FAQ
-              question="세미나에는 참여하고 싶은데, 주제 정하기가 어려워요."
-              answer="동아리방에 CS 관련 책이 있습니다! 목차에서 하나를 정하여 공부한 내용을 발표해도 괜찮습니다."
+              question="코딩 지식이 없는데 가입해도 되나요?"
+              answer="문제없습니다! 코딩을 배우고자 하는 분들이 많으며, 코딩 외에도 다양한 스터디에 참여할 수 있습니다."
               emoji="🧐"
             />
             <FAQ
-              question="세미나 난이도는 어떻게 되나요?"
-              answer="세미나는 다양한 난이도로 진행되며, 본인의 수준에 맞는 주제를 선택하실 수 있습니다. 중요한 것은 함께 배우고 공유하는 경험이니 부담 갖지 않고 참여하시면 됩니다!"
+              question="스터디는 어떻게 개설되고 관리되나요?"
+              answer="단체 채팅방에서 직접 모집할 수 있고, 회장에게 문의하시면 수요조사를 거쳐 스터디를 개설합니다. 팀장을 모집한 후 자유로운 분위기 속에서 진행됩니다!"
               emoji="🧐"
             />
             <FAQ
@@ -705,22 +672,16 @@ function JoinQuipu() {
             />
 
             <FAQ
-              question="개발은 어떤 방식으로 진행되나요?"
-              answer="저희는 슬랙으로 소통하며 정기 회의를 잡아 개발 과정을 공유합니다. 상황에 따라 대면, 비대면 모두 가능합니다!"
-              emoji="🧐"
-            />
-
-            {/* <FAQ
               question="9월 13일 킥오프에서 무슨 활동을 하며 참여가 힘든 경우 어떻게 하나요?"
               answer="한 학기 동안 진행할 프로젝트 소개와 팀 배정을 진행합니다. 함께 활동할 팀원을 처음 만나는 중요한 날이니, 가능하면 꼭 참석 부탁드립니다! 불참 시 원하는 활동을 선택하지 못할 수 있으니 양해 부탁드립니다."
               emoji="😝"
-            /> */}
+            />
 
-            {/* <FAQ
+            <FAQ
               question="다른 기술 스택을 주로 사용해왔거나 사용하고 싶다면 어떻게 하나요?"
               answer="저희는 React.js와 Node.js를 사용할 줄 아는 분들을 우선적으로 모집하고 있습니다. 이와 함께, 다른 기술 스택에 대한 수요가 많다면 추가 프로젝트를 논의할 예정입니다."
               emoji="😏"
-            /> */}
+            />
 
             <FAQ
               question="포트폴리오 PDF는 어떤 형식이어야 하나요?"
@@ -730,7 +691,7 @@ function JoinQuipu() {
 
             <FAQ
               question="개발부원 회비는 얼마인가요?"
-              answer="방학 기간 동안 10,000원으로 예정되어 있고 모집 후 다시 공지드릴 예정입니다!"
+              answer="30,000원으로 예정되어 있고 모집 후 다시 공지드릴 예정입니다!"
               emoji="🤠"
             />
           </div>
