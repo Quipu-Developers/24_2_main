@@ -1,0 +1,52 @@
+.logo {
+  width: 120px;
+  height: 50px;
+  z-index: 5000;
+  position: relative;
+  @media (max-width: 700px) {
+    width: 110px;
+  }
+  @media (max-width: 500px) {
+    width: 100px;
+  }
+}
+
+.logo div {
+  width: 40px;
+  height: 40px;
+  border: 13px solid rgb(255, 255, 255, 0.6);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  @media (max-width: 700px) {
+    width: 35px;
+    height: 35px;
+  }
+  @media (max-width: 500px) {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.logo h1 {
+  position: absolute;
+  top: calc(50% + 2px);
+  left: calc(50% - 5px);
+  transform: translate(-50%, -50%);
+  font-family: 'Black Han Sans';
+  font-weight: 100;
+  font-style: italic;
+  font-size: 2rem;
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  letter-spacing: 0.6px;
+  background: linear-gradient(to right, #1c0093, #1c0093);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  cursor: pointer;
+}

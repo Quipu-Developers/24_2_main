@@ -1,0 +1,858 @@
+/* mobile은 900px 기준 */
+
+/* 헤더 */
+.showcasedetail-container {
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  word-break: keep-all;
+  background-image: linear-gradient(
+    to right top,
+    #f5f5f5,
+    #f7f7f7,
+    #f8f9f8,
+    #fafafa,
+    #fcfcfc,
+    #f9f8fb,
+    #f5f5fb,
+    #f1f1fa,
+    #e5e7f7,
+    #d7ddf4,
+    #c8d4f1,
+    #b7cbee
+  );
+  display: flex;
+  flex-direction: column;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.showcasedetail-container * {
+  font-family: 'Pretendard-Regular', 'Playfair Display';
+  font-family: 'RIDIBatang', 'Playfair Display';
+}
+
+.showcasedetail-header {
+  width: 100%;
+  padding: 1% 4%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  & h1 {
+    font-family: 'Lora';
+    font-style: italic;
+    font-size: 3rem;
+    color: #333333;
+    margin: 0;
+  }
+}
+
+.showcasedetail-header-border {
+  width: 96%;
+  margin: 0 2%;
+  border: 1px solid #333333;
+}
+
+.showcasedetail-back {
+  width: 100%;
+  padding-top: 1%;
+  padding-left: 2%;
+
+  & svg {
+    cursor: pointer;
+    font-size: 20px;
+    color: #333333;
+  }
+}
+
+/* 헤더 미디어쿼리 */
+@media (max-width: 900px) {
+  .showcasedetail-header {
+    flex-direction: column;
+    margin-top: 2vh;
+
+    & svg {
+      cursor: pointer;
+      font-size: 20px;
+      color: #333333;
+      align-self: flex-start;
+      margin-left: 1%;
+    }
+  }
+
+  .showcasedetail-header-border {
+    width: 86%;
+    margin: 0 7%;
+  }
+}
+
+/* 메인 */
+.showcasedetail-main {
+  width: 100%;
+  position: relative;
+  max-width: 1500px;
+  align-self: center;
+}
+
+/* 메인 윗부분 */
+.showcasedetail-main-upper {
+  width: 100%;
+  padding: 2vh 2% 0 2%;
+  display: flex;
+  flex-direction: column;
+}
+
+.goal-container {
+  width: 60%;
+  margin: 4vh 0;
+}
+
+.goal-container,
+.dc-description-container {
+  padding: 3%;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  box-shadow: 0px 2px 10px 0px rgba(196, 196, 196, 0.25);
+
+  & h4 {
+    font-size: 3rem;
+    font-weight: 400;
+    margin: 0;
+    color: #333333;
+  }
+
+  & p {
+    font-size: 1rem;
+    margin-top: 3%;
+  }
+}
+
+.dc-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.dc-img-container {
+  width: 33%;
+  margin-left: 2%;
+  aspect-ratio: 1.5/1;
+
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+/* 나머지 코드는 goal-container에 같이 있음 */
+.dc-description-container {
+  width: 55%;
+  align-items: flex-end;
+  text-align: end;
+
+  position: relative;
+  top: calc(5vh + 2rem);
+
+  & span {
+    font-size: 1.8rem;
+    color: #333333;
+  }
+}
+
+.dc-description-button {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+}
+
+.dc-button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & p {
+    color: rgb(100, 134, 193);
+  }
+}
+
+.dc-button {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & svg {
+    cursor: pointer;
+    font-size: 30px;
+    color: black;
+    transition: all 0.3s;
+
+    &:hover {
+      font-size: 40px;
+      color: rgba(194, 213, 245, 0.85);
+    }
+  }
+}
+
+/* 메인 윗부분 미디어쿼리 */
+@media (max-width: 900px) {
+  .showcasedetail-main-upper {
+    align-items: center;
+    padding: 7% 5% 0 5%;
+  }
+
+  .goal-container,
+  .dc-description-container {
+    width: 100%;
+    padding: 3% 5%;
+
+    & h4 {
+      font-size: 2rem;
+    }
+
+    & p {
+      margin: 3% 0;
+    }
+  }
+
+  .dc-container {
+    margin: 2vh 0 10vh 0;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .dc-img-container {
+    width: 70%;
+  }
+
+  .dc-description-container {
+    align-items: flex-start;
+    text-align: start;
+  }
+}
+
+/* 메인 아랫부분 */
+
+.showcasedetail-main-lower {
+  width: 100%;
+  padding: 0 2%;
+  margin-top: 5vh;
+  display: flex;
+  flex-direction: column;
+
+  & h4 {
+    font-size: 3rem;
+    font-weight: 400;
+    margin: 0;
+    color: #333333;
+  }
+}
+
+/* 역사 첫째줄 */
+
+.showcasedetail-main-lower-row__1 {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* 메인 아랫부분 및 역사 첫째줄 미디어쿼리 */
+
+@media (max-width: 900px) {
+  .showcasedetail-main-lower {
+    padding: 0 5%;
+
+    & h4 {
+      text-align: center;
+    }
+  }
+
+  .showcasedetail-main-lower-row__1 {
+    flex-direction: column;
+    align-items: center;
+    margin: 10vh 0;
+    gap: 5vh;
+  }
+}
+
+@media (max-width: 1100px) and (max-height: 800px) {
+  .showcasedetail-main-lower-row__1 {
+    margin-bottom: 13vh;
+  }
+}
+
+/* 역사 카드 1 */
+
+.history__1-container {
+  height: 15vw;
+  overflow-x: visible;
+  margin: 5vh 0 2vh 0;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.history__1-img {
+  height: 100%;
+  aspect-ratio: 1.5 / 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.history__1-card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  align-items: flex-start;
+  margin-left: 7px;
+
+  position: relative;
+  top: 5%;
+
+  & h4 {
+    font-family: 'Source Serif 4';
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  & p {
+    font-size: 0.8rem;
+    color: #646464;
+  }
+
+  & .history__1-card-img {
+    height: 9vw;
+    aspect-ratio: 1.5/1;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+    position: relative;
+    z-index: 1;
+    right: 5vw;
+
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      padding: 10px;
+      background-color: rgba(194, 213, 245, 0.5);
+    }
+  }
+}
+
+.history__1-card-link {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+
+  & p {
+    width: calc(100% - 35px);
+  }
+}
+
+.history__1-button-container {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & img {
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    border-radius: 7px;
+    background-color: white;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
+
+/* 역사 카드 1 모바일 버전 */
+.history__1-mobile-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  & h4 {
+    font-family: 'Source Serif 4';
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: start;
+  }
+
+  & p {
+    font-size: 0.8rem;
+    color: #646464;
+  }
+}
+
+.history__1-mobile-middle {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5%;
+
+  & .history__1-mobile-middle-content {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    gap: 8px;
+    bottom: 4.8vw;
+  }
+
+  & img {
+    width: 40%;
+    aspect-ratio: 1.5/1;
+    object-fit: cover;
+  }
+}
+
+.history__1-mobile-bottom {
+  width: 90%;
+  align-self: flex-end;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: end;
+}
+
+.history__1-mobile-img {
+  width: 40%;
+  aspect-ratio: 1.5/1;
+  object-fit: cover;
+  padding: 7px;
+  background-color: rgba(194, 213, 245, 0.85);
+}
+
+/* 역사 카드 2 */
+.history__2-container {
+  height: 15vw;
+  aspect-ratio: 3/1;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  position: relative;
+  top: 8vw;
+}
+
+.history__2-img {
+  height: 100%;
+  aspect-ratio: 1/1.5;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+  position: relative;
+
+  & .history__2-img-base {
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    z-index: 0;
+  }
+
+  & .history__2-img-overlay {
+    height: 30px;
+    aspect-ratio: 1/1;
+    z-index: 1;
+    top: -5%;
+    right: -5%;
+  }
+}
+
+.history__2-img {
+  aspect-ratio: 1/1.5;
+}
+.history__2-img-base {
+  aspect-ratio: 1/1.5;
+}
+
+.history__2-img-overlay {
+  position: relative;
+}
+
+.history__2-card-container {
+  padding: 3%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  background: rgba(194, 213, 245, 0.85);
+
+  position: relative;
+  bottom: 2%;
+  left: 5%;
+  z-index: 1;
+
+  & h4 {
+    font-family: 'Source Serif 4';
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  & p {
+    font-size: 0.8rem;
+    color: #646464;
+  }
+}
+
+.history__2-card-link {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  text-align: end;
+
+  & p {
+    width: calc(100% - 70px);
+  }
+}
+
+/* 역사 카드 2 미디어쿼리 */
+@media (max-width: 900px) {
+  .history__2-container {
+    width: 100%;
+    height: fit-content;
+    justify-content: flex-end;
+  }
+
+  .history__2-img {
+    width: 50%;
+    height: auto;
+
+    @media (max-height: 600px) {
+      width: 30%;
+    }
+  }
+
+  .history__2-card-container {
+    width: 70%;
+    height: fit-content;
+    gap: 5px;
+    position: absolute;
+    bottom: -5%;
+    left: 0;
+
+    & h4 {
+      align-self: flex-start;
+    }
+
+    @media (max-height: 600px) {
+      bottom: 0;
+    }
+  }
+}
+
+/* 역사 둘째줄 */
+.showcasedetail-main-lower-row__2 {
+  margin-top: 5vw;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.showcasedetail-main-lower-row__2-left {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+}
+
+/* 역사 둘째줄 미디어쿼리 */
+@media (max-width: 900px) {
+  .showcasedetail-main-lower-row__2 {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5vh;
+
+    @media (max-height: 500px) {
+      margin-top: 7vw;
+    }
+  }
+
+  .showcasedetail-main-lower-row__2-left {
+    width: 100%;
+    gap: 7vh;
+  }
+}
+
+/* 역사 카드 3 */
+.history__3-container {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+
+  & h4 {
+    font-family: 'Source Serif 4';
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  & p {
+    font-size: 0.8rem;
+    color: #646464;
+  }
+}
+
+.history__3-link {
+  display: flex;
+  flex-direction: row;
+
+  @media (min-width: 901px) {
+    & p {
+      width: calc(100% - 35px);
+    }
+  }
+}
+
+/* 역사 카드 3 미디어쿼리 */
+@media (max-width: 900px) {
+  .history__3-container {
+    width: 100%;
+
+    & h4,
+    & p {
+      align-self: flex-end;
+      text-align: end;
+      width: 70%;
+    }
+  }
+
+  .history__3-link {
+    width: 100%;
+    align-items: center;
+
+    & p {
+      width: 100%;
+      text-align: start;
+    }
+  }
+}
+
+/* 역사 카드 4 */
+.history__4-container {
+  width: 100%;
+  align-self: flex-end;
+
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.history__4-card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  align-items: flex-end;
+  margin-right: 10px;
+  text-align: end;
+
+  & h4 {
+    font-family: 'Source Serif 4';
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  & p {
+    font-size: 0.8rem;
+    color: #646464;
+  }
+}
+
+.history__4-img {
+  width: 50%;
+  aspect-ratio: 1/1.5;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+  position: relative;
+  background: rgba(194, 213, 245, 0.85);
+
+  & .history__4-img-base {
+    width: 90%;
+    aspect-ratio: 1/1.5;
+    object-fit: cover;
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    z-index: 0;
+  }
+
+  & .history__4-img-overlay {
+    position: relative;
+    width: 30px;
+    aspect-ratio: 1/1;
+    z-index: 1;
+    top: 0;
+    right: 0;
+  }
+}
+
+/* 역사 카드 4 미디어쿼리 */
+@media (max-width: 900px) {
+  .history__4-container {
+    flex-direction: column;
+  }
+
+  .history__4-card-container {
+    width: 100%;
+    padding-left: 3%;
+    align-items: start;
+    text-align: start;
+  }
+
+  .history__4-mobile-text {
+    width: 60%;
+  }
+
+  .history__4-img {
+    width: 40%;
+    bottom: 4vw;
+
+    @media (max-width: 800px) {
+      bottom: 4vw;
+    }
+
+    @media (max-width: 650px) {
+      bottom: 10vw;
+    }
+  }
+}
+
+/* 역사 카드 5 */
+
+.history__5-container {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.history__5-img {
+  width: 90%;
+  aspect-ratio: 1.5/1;
+  position: relative;
+  z-index: 0;
+  bottom: 10%;
+  left: 10%;
+
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.history__5-card-container {
+  padding: 2%;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  background: rgba(194, 213, 245, 0.85);
+  position: relative;
+  z-index: 1;
+
+  & h4 {
+    font-family: 'Source Serif 4';
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  & p {
+    font-size: 0.8rem;
+    color: #646464;
+  }
+}
+
+.history__5-card-link {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+
+  & p {
+    width: calc(100% - 35px);
+  }
+}
+
+/* 역사 카드 5 미디어쿼리 */
+
+@media (max-width: 900px) {
+  .history__5-container {
+    width: 100%;
+  }
+
+  .history__5-img {
+    width: 40%;
+    position: static;
+  }
+
+  .history__5-card-container {
+    width: 60%;
+    align-items: flex-end;
+    text-align: end;
+    background: none;
+  }
+
+  .history__5-card-link {
+    flex-direction: row-reverse;
+  }
+}
+
+/* 푸터 */
+
+.showcasedetail-footer {
+  width: 100%;
+  margin-top: 5vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  & h4 {
+    font-family: Lora;
+    font-size: 1.5rem;
+    font-style: italic;
+    font-weight: 700;
+    color: #333333;
+  }
+}
+
+/* 푸터 미디어쿼리 */
+@media (max-width: 900px) {
+  .showcasedetail-footer {
+    padding: 0 5%;
+    align-items: flex-end;
+  }
+}
