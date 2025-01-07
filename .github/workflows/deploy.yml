@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  deploy:
+  frontend:
     runs-on: ubuntu-latest
 
     steps:
@@ -28,7 +28,6 @@ jobs:
           echo "REACT_APP_FRONTEND_URL=${{ secrets.REACT_APP_FRONTEND_URL }}" >> ./.env.production
 
       - name: Build project
-        working-directory: frontend
         run: npm run build
 
       - name: Deploy to GitHub Pages
@@ -36,5 +35,4 @@ jobs:
         with:
           token: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           branch: gh-pages
-          publish_dir: ./frontend/build
-          cname: "quipu.uos.ac.kr"
+          folder: build
