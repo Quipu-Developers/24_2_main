@@ -38,7 +38,7 @@ export default function Footer() {
         <div className="footer-icon mobile">
           <FooterIcon />
         </div>
-        <p>Copyright 2024.QUIPU. All rights reserved.</p>
+        <p>Copyright 2025.QUIPU. All rights reserved.</p>
         <p>Icon designed by Flaticon(Freepik)</p>
       </div>
       <div className="footer-icon pc">
